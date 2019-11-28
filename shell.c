@@ -8,10 +8,10 @@
 
 int main(void)
 {
-	char *prompt = "#cisfun$ ", *buffer = NULL, *token = NULL, *argv[256];
+	char *prompt = "#cisfun$ ", *buffer = NULL, *tk = NULL, *argv[256];
 	size_t size = 1024;
 	pid_t child;
-	int i = 0, j = 1;
+	int i = 0, j;
 
 	do {
 		if (isatty(STDIN_FILENO) == 1)
@@ -34,9 +34,8 @@ int main(void)
 			return (1);
 		if (child == 0)
 		{
-			argv[0] = token = strtok(buffer, " \n");
-			for (; token; token = strtok(NULL, " \n"))
-				argv[j] = token;
+			for (j = 0, tk = strtok(buffer, " \n"); tk; tk = strtok(NULL, " \n"), j++)
+				argv[j] = tk;
 			argv[j] = NULL;
 			if (argv[0][0] != '.')
 				path(&argv[0]);
