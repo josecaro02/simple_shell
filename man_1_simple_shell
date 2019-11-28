@@ -1,0 +1,103 @@
+.TH HSH 1 "27 Nov 2019" "0.01" "Holberton's BSD General Command Manual"
+.SH NAME
+.B hsh
+- Holberton's command interpreter (Simple Shell).
+.SH SYNOPSIS
+.B hsh
+hsh does not take any options or arguments.
+However, you can use it in interactive mode.
+.SH DESCRIPTION
+.B Commands
+If
+.B hsh
+detects a command that is not a built-in
+(hsh can detect it with or without apath), it will execute it,
+with or without arguments or options, wherever you want it. If the command does
+not exist, you will receive an error. Some of these commands are as follows:
+ls     List directory contents (for more information
+about your options and arguments -> ls(1)).
+touch  Create an empty file (for more information
+about your options and arguments -> touch(1)).
+mkdir  Make directories (for more information
+about your options and arguments -> mkdir(1)).
+rm     Remove files or directories (for more information
+about your options and arguments -> rm(1)).
+cp     Copy files and directories (for more information
+about your options and arguments -> cp(1)).
+vim    Open Vi IMproved, a programmers text editor (for more information
+about your options and arguments -> vim(1)).
+tc     Show / manipulate traffic control settings (for more information
+about your options and arguments -> tc(8)).
+and more commands located in the different directories deployed by the PATH
+variable.
+.B Built-ins
+.B hsh
+can also identify some built-ins. builti-n are commands that are unique
+to or have been extended in Bash, Some of these commands are as follows:
+exit   Cause normal process termination (for more information
+about your options and arguments -> exit(3)).
+env    Run a program in a modified environment (for more information
+about your options and arguments -> env(1)).
+cd     Change current directory (for more information
+about your options and arguments -> help cd).
+.B hsh
+uses some functions created in Holberton and others of its own for its operation
+such as: _strlen, _str_concat, _strcmp, _getenv, path, among others.
+you can find them in the authors GitHub.
+.SH RETURN VALUE
+On Sucess output
+.B hsh
+will print in stdout 0.
+On Error output
+.B hsh
+will print in stdout 127, for commands that were not found or
+1, 2 for built-ins errors
+.SH EXAMPLES
+.B Commands
+#cisfun$ ls -l /usr/
+total 56
+drwxr-xr-x   2 root root 28672 Oct 22 00:19 bin
+drwxr-xr-x   2 root root  4096 Apr 10  2014 games
+drwxr-xr-x  33 root root  4096 Oct 22 00:19 include
+drwxr-xr-x  74 root root  4096 Oct 22 00:19 lib
+drwxr-xr-x  10 root root  4096 May 14  2019 local
+drwxr-xr-x   2 root root  4096 Sep 21 21:48 sbin
+drwxr-xr-x 131 root root  4096 Sep 22 00:54 share
+drwxr-xr-x   5 root root  4096 May 14  2019 src
+#cisfun$
+.B Built-ins
+#cisfun$ env
+MAIL=/var/mail/vagrant
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+PWD=/home/simple_shell
+LANG=en_US.UTF-8
+SHLVL=1
+HOME=/home/vagrant
+LOGNAME=vagrant
+SSH_CONNECTION=10.0.2.2 51823 10.0.2.15 22
+#cisfun$
+.B On interctive mode
+$ echo "ls -l .." | ./hsh
+total 36
+drwxr-xr-x  5 root    root    4096 Sep 22 01:02 Betty
+drwxr-xr-x  7 root    root    4096 Oct  7 00:40
+holberton-system_engineering-devops
+drwxr-xr-x 21 root    root    4096 Nov  1 02:18
+holbertonschool-low_level_programming
+drwxr-xr-x  7 root    root    4096 Oct 20 14:49 holbertonschool-zero_day
+drwxr-xr-x  3 root    root    4096 Nov  1 02:17 printf
+drwxr-xr-x  3 root    root    4096 Nov 26 03:08 shell_test
+drwxr-xr-x  3 root    root    4096 Nov 28 03:55 simple_shell
+drwxr-xr-x  3 ubuntu  ubuntu  4096 Sep 21 21:01 ubuntu
+drwxr-xr-x  5 vagrant vagrant 4096 Oct  6 01:51 vagrant
+$
+.SH OPTIONS
+.B hsh
+does not take any options. However, you can use it in interactive mode.
+.SH SEE ALSO
+.I sh(1), malloc(2), free(3), getline(3)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Jose David Caro Cantor (https://github.com/josecaro02)
+and Sebastian Chingate Cepeda (https://github.com/sebastianchc)
