@@ -13,7 +13,7 @@ int main(void)
 	pid_t child;
 	int i = 0, j, atty = 0;
 
-	if (!(isatty(fileno(stdin))))
+	if (!(isatty(STDIN_FILENO)))
 		atty = 1;
 	do {
 		if (atty == 0)
