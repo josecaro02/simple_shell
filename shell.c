@@ -11,19 +11,16 @@ int main(void)
 	char *prompt = "#cisfun$ ", *buffer = NULL, *token = NULL, *argv[256];
 	size_t size = 1024;
 	pid_t child;
-	int i = 0, j, atty = 0;
+	int i = 0, j = 1;
 
-	if (!(isatty(STDIN_FILENO)))
-		atty = 1;
 	do {
-		if (atty == 0)
+		if (isatty(STDIN_FILENO) == 1)
 			write(1, prompt, 9);
 		signal(SIGINT, signalhandler);
 		i = getline(&buffer, &size, stdin);
 		if (i == -1)
 		{
-			if (atty == 0)
-				write(1, "\n", 1);
+			(isatty(STDIN_FILENO) == 1) ? write(1, "\n", 1) : 1;
 			free(buffer);
 			return (0);
 		}
@@ -37,12 +34,9 @@ int main(void)
 			return (1);
 		if (child == 0)
 		{
-			token = strtok(buffer, " \n");
-			for (j = 0; token; j++)
-			{
+			argv[0] = token = strtok(buffer, " \n");
+			for (; token; token = strtok(NULL, " \n"))
 				argv[j] = token;
-				token = strtok(NULL, " \n");
-			}
 			argv[j] = NULL;
 			if (argv[0][0] != '.')
 				path(&argv[0]);
